@@ -5,6 +5,29 @@ var api = 'http://netflixroulette.net/api/api.php?director=Quentin%20Tarantino'
 // Example
 // https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=Jack+Reacher
 
+// this is our function to capture form submits
+var movieResults
+function search(e) {
+	e.preventDefault();
+
+	// Using fetch to get the data
+	// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+	// store in a variable somewhere
+	fetch('https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=Jack+Reacher').then(function(response) {
+    var contentType = response.headers.get("content-type");
+    if(contentType && contentType.includes("application/json")) {
+      return response.json();
+    }
+    throw new TypeError("Oops, we haven't got JSON!");
+	})
+	.then(function(json) { 
+		console.log('results are', json)	
+	})
+	.catch(function(error) { console.log(error); });
+
+	return "hello world"
+} 
+
 
 // Get the modal
 var modal = document.getElementById('myModal');

@@ -40,8 +40,11 @@
     <ul>
       <li><a href="#">Random</a></li>
     <li><a href="#" id="aboutBtn">About</a></li>
-      <li><form>
-	<input id="filter" type="search" placeholder="Search"><i id="filtersubmit" class="fa fa-search" aria-hidden="true"></i></li>
+      <li>
+        <form onsubmit="alert(search(event))">
+          <input id="filter" type="search" placeholder="Search"><i id="filtersubmit" class="fa fa-search" aria-hidden="true">
+        </form>
+  </i></li>
   </ul>
     
   </nav>
