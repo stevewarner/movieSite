@@ -1,5 +1,9 @@
 var api = 'http://netflixroulette.net/api/api.php?director=Quentin%20Tarantino'
 
+// Movie API docs
+// https://developers.themoviedb.org/3/getting-started/search-and-query-for-details
+// Example
+// https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=Jack+Reacher
 
 
 // Get the modal
