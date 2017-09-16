@@ -13,12 +13,11 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 6em repeat(1, 1fr) 3em;
-  grid-gap: 40px 0;
   height: 100vh;
 }
 
 .box {
-  
+  grid-column: span 4;
 }
 
 a {
