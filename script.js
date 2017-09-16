@@ -1,4 +1,4 @@
-var api = 'http://netflixroulette.net/api/api.php?director=Quentin%20Tarantino'
+
 
 // Movie API docs
 // https://developers.themoviedb.org/3/getting-started/search-and-query-for-details
@@ -6,14 +6,19 @@ var api = 'http://netflixroulette.net/api/api.php?director=Quentin%20Tarantino'
 // https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=Jack+Reacher
 
 // this is our function to capture form submits
-var movieResults
 function search(e) {
 	e.preventDefault();
+
+	var api = 'https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query='
+
+	var searchTerm = e.target.children[0].value;
 
 	// Using fetch to get the data
 	// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 	// store in a variable somewhere
-	fetch('https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=Jack+Reacher').then(function(response) {
+
+	console.log(api + searchTerm)
+	fetch(api + searchTerm).then(function(response) {
     var contentType = response.headers.get("content-type");
     if(contentType && contentType.includes("application/json")) {
       return response.json();
@@ -22,11 +27,45 @@ function search(e) {
 	})
 	.then(function(json) { 
 		console.log('results are', json)	
+		appendMovie(json);
 	})
 	.catch(function(error) { console.log(error); });
 
 	return "hello world"
 } 
+
+function appendMovie(data) {
+	data.results.forEach((item, index) => {
+		//creates div and class
+		var movieResultDiv = document.createElement("div");
+		var movieResultClass = document.createAttribute("class");
+		movieResultClass.value = "movie";
+		movieResultDiv.setAttributeNode(movieResultClass);
+
+		//call helper function
+		createElement.title(movieResultDiv, item.title);
+
+		//append it
+		document.getElementById("content").appendChild(movieResultDiv);	
+	})
+	
+}
+
+var createElement = {
+	title: (parentNode, title) => {
+		var node = document.createTextNode(title);
+		parentNode.appendChild(node);
+	},
+	poster: (parentNode, imagePath) => {
+
+	}
+}
+
+
+// <div class="movie">
+//       <img class="shadow" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_UX182_CR0,0,182,268_AL_.jpg">
+//       <p>Pulp Fiction</p>
+//     </div>
 
 
 // Get the modal

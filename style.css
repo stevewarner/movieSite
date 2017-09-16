@@ -12,7 +12,7 @@ body {
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 6em repeat(1, 1fr) 3em;
+  grid-template-rows: 6em 1fr 3em;
   height: 100vh;
 }
 
