@@ -1,0 +1,244 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 6em repeat(1, 1fr) 3em;
+  grid-gap: 40px 0;
+  height: 100vh;
+}
+
+.box {
+  
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+p > a:hover {
+  text-decoration: underline;
+}
+
+nav {
+  background-color: #333;
+  grid-column: span 4;
+  grid-row: 1;
+  padding: 20px;
+}
+
+nav p {
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  font-size: 36px;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+nav ul {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0; 
+}
+
+nav li {
+  display: inline-block;
+  padding: 10px;
+}
+
+nav li a {
+  color: #fff;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+nav li a:hover {
+  color: #fff;
+}
+
+nav li a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+nav li a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+
+footer {
+  background-color: #f6f6f6;
+  grid-column: span 4;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+/* BUTTON */
+button:hover {
+  -webkit-transform: translateY(4px);
+  -moz-transform: translateY(4px);
+  -ms-transform: translateY(4px);
+  -o-transform: translateY(4px);
+  transform: translateY(4px);
+  background-color: #757575;
+  box-shadow: 0 0 0 0 ;
+}
+
+button .active {
+  background-color: #009ACD;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: 1fr 1fr;
+  grid-template-rows: 5em repeat(1, 1fr);
+  
+  }
+  
+  a {
+  color: #fff;
+}
+
+  nav {
+  grid-column: span 2;
+}
+  footer {
+    grid-column: span 2;
+  }
+}
+
+/* Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 10em;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* SEARCH */
+input {
+	outline: none;
+}
+input[type=search] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; 
+}
+
+
+input[type=search] {
+	
+	border: solid 1px #ccc;
+  padding:.3em 2em .3em .7em;
+	/*padding: 9px 20px 9px 10px;*/
+	width: 55px;
+	
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+}
+input[type=search]:focus {
+	width: 130px;
+	background-color: #fff;
+	border-color: #66CC75;
+	
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+input:-moz-placeholder {
+	color: #999;
+}
+
+input::-webkit-input-placeholder {
+	color: #999;
+}
+
+#filtersubmit {
+    position: relative;
+    z-index: 1;
+    left: -25px;
+    top: 1px;
+    color: #7B7B7B;
+    cursor:pointer;
+    width: 0;
+}
