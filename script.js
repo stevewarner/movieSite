@@ -9,9 +9,9 @@
 function search(e) {
 	e.preventDefault();
 
-	var api = 'https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query='
+	const api = 'https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query='
 
-	var searchTerm = e.target.children[0].value;
+	let searchTerm = e.target.children[0].value;
 
 	// Using fetch to get the data
 	// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
@@ -19,7 +19,7 @@ function search(e) {
 
 	console.log(api + searchTerm)
 	fetch(api + searchTerm).then(function(response) {
-    var contentType = response.headers.get("content-type");
+    let contentType = response.headers.get("content-type");
     if(contentType && contentType.includes("application/json")) {
       return response.json();
     }
@@ -37,8 +37,8 @@ function search(e) {
 function appendMovie(data) {
 	data.results.forEach((item, index) => {
 		//creates div and class
-		var movieResultDiv = document.createElement("div");
-		var movieResultClass = document.createAttribute("class");
+		let movieResultDiv = document.createElement("div");
+		let movieResultClass = document.createAttribute("class");
 		movieResultClass.value = "movie";
 		movieResultDiv.setAttributeNode(movieResultClass);
 
@@ -51,31 +51,34 @@ function appendMovie(data) {
 	
 }
 
-var createElement = {
+let createElement = {
 	title: (parentNode, title) => {
-		var node = document.createTextNode(title);
+		let node = document.createTextNode(title);
 		parentNode.appendChild(node);
 	},
-	poster: (parentNode, imagePath) => {
+	poster: (parentNode, posterPath) => {
+		let poster = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + posterPath;
+		let node = document.createTextNode(poster);
+		parentNode.appendChild(node);
 
 	}
 }
 
 
 // <div class="movie">
-//       <img class="shadow" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_UX182_CR0,0,182,268_AL_.jpg">
-//       <p>Pulp Fiction</p>
+//       <img >
+//       <p>Pulp Fiction</p> Title, year, 
 //     </div>
 
 
 // Get the modal
-var modal = document.getElementById('myModal');
+let modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
-var btn = document.getElementById("aboutBtn");
+let btn = document.getElementById("aboutBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+let span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {

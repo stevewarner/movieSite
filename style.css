@@ -200,12 +200,10 @@ input::-webkit-search-cancel-button {
 
 
 input[type=search] {
-	
-	border: solid 1px #ccc;
   padding:.3em 2em .3em .7em;
 	/*padding: 9px 20px 9px 10px;*/
 	width: 55px;
-	
+	border: transparent;
 	-webkit-border-radius: 10em;
 	-moz-border-radius: 10em;
 	border-radius: 10em;
@@ -214,14 +212,13 @@ input[type=search] {
 	-moz-transition: all .5s;
 	transition: all .5s;
 }
+
 input[type=search]:focus {
 	width: 130px;
 	background-color: #fff;
-	border-color: #66CC75;
+	border-color: transparent;
 	
-	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	box-shadow: 0 0 5px rgba(109,207,246,.5);
+
 }
 
 input:-moz-placeholder {
