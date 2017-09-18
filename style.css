@@ -18,6 +18,11 @@ body {
 
 .box {
   grid-column: span 4;
+
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 a {
@@ -238,3 +243,15 @@ input::-webkit-input-placeholder {
     cursor:pointer;
     width: 0;
 }
+
+/************ Movie Results ******************/
+/* styles for the movie results stuff goes here, 
+also added flex properties to the  box class -> see .box above */
+.movie {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  flex: 1 1 auto;
+  min-width: 300px;
+}
+

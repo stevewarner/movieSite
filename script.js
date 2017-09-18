@@ -5,6 +5,19 @@
 // Example
 // https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=Jack+Reacher
 
+
+/******* TODO *********/
+// it would be cool to populate some moves when the page loads or have some kind of browser feature, 
+// in addition we could also suppor the search feature we already implemented.
+
+// Check out this link, it might be a good place to start for this feature
+// https://www.themoviedb.org/documentation/api/discover
+
+function fillMoviesOnLoad() {
+
+}
+
+
 // this is our function to capture form submits
 function search(e) {
 	e.preventDefault();
@@ -36,14 +49,22 @@ function search(e) {
 
 function appendMovie(data) {
 	data.results.forEach((item, index) => {
-		//creates div and class
+		//creates results div and class
 		let movieResultDiv = document.createElement("div");
 		let movieResultClass = document.createAttribute("class");
 		movieResultClass.value = "movie";
 		movieResultDiv.setAttributeNode(movieResultClass);
 
+		// creates sub div element for flex styling 
+		let movieResultSubDiv = document.createElement("div");
+		let movieResultSubDivClass = document.createAttribute("class");
+		movieResultSubDivClass.value = "movie-child";
+		movieResultSubDiv.setAttributeNode(movieResultSubDivClass);
+		movieResultDiv.appendChild(movieResultSubDiv);
+
 		//call helper function
-		createElement.title(movieResultDiv, item.title);
+		createElement.title(movieResultSubDiv, item.title);
+		createElement.poster(movieResultSubDiv, item.poster_path);
 
 		//append it
 		document.getElementById("content").appendChild(movieResultDiv);	
@@ -53,22 +74,21 @@ function appendMovie(data) {
 
 let createElement = {
 	title: (parentNode, title) => {
+		let movieResultTitleP = document.createElement("p");
+		parentNode.appendChild(movieResultTitleP)
 		let node = document.createTextNode(title);
-		parentNode.appendChild(node);
+		movieResultTitleP.appendChild(node);
 	},
 	poster: (parentNode, posterPath) => {
-		let poster = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + posterPath;
-		let node = document.createTextNode(poster);
-		parentNode.appendChild(node);
-
+		let fullPosterPath = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + posterPath;
+		// let node = document.createTextNode(poster);
+		let movieResultPoster = document.createElement("img");
+		let movieResultPosterSrc = document.createAttribute("src");
+		movieResultPosterSrc.value = fullPosterPath;
+		movieResultPoster.setAttributeNode(movieResultPosterSrc);
+		parentNode.appendChild(movieResultPoster);
 	}
 }
-
-
-// <div class="movie">
-//       <img >
-//       <p>Pulp Fiction</p> Title, year, 
-//     </div>
 
 
 // Get the modal
