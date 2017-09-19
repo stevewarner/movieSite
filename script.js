@@ -63,8 +63,8 @@ function appendMovie(data) {
 		movieResultDiv.appendChild(movieResultSubDiv);
 
 		//call helper function
-		createElement.title(movieResultSubDiv, item.title);
 		createElement.poster(movieResultSubDiv, item.poster_path);
+		createElement.title(movieResultSubDiv, item.title);
 
 		//append it
 		document.getElementById("content").appendChild(movieResultDiv);	
