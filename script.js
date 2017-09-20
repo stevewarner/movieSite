@@ -13,10 +13,50 @@
 // Check out this link, it might be a good place to start for this feature
 // https://www.themoviedb.org/documentation/api/discover
 
-function fillMoviesOnLoad() {
-	const pop = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc"
+window.onload = function() {
+	
+	fillMoviesOnLoad();
+	
 }
 
+function getJson() {
+	// Maybe separate api const and fetch into own function and then call fillMoviesOnLoad and search
+
+	// const api = 'https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=kill+bill'
+
+	// fetch(api).then(function(response) {
+ //    let contentType = response.headers.get("content-type");
+ //    if(contentType && contentType.includes("application/json")) {
+ //      return response.json();
+ //    }
+ //    throw new TypeError("Oops, we haven't got JSON!");
+	// })
+	// .then(function(json) { 
+	// 	console.log('results are', json)	
+	// 	appendMovie(json);
+	// })
+	// .catch(function(error) { console.log(error); });
+
+}
+
+function fillMoviesOnLoad() {
+	console.log('loading...')
+
+	const api = 'https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=kill+bill'
+
+	fetch(api).then(function(response) {
+    let contentType = response.headers.get("content-type");
+    if(contentType && contentType.includes("application/json")) {
+      return response.json();
+    }
+    throw new TypeError("Oops, we haven't got JSON!");
+	})
+	.then(function(json) { 
+		console.log('results are', json)	
+		appendMovie(json);
+	})
+	.catch(function(error) { console.log(error); });	
+}
 
 // this is our function to capture form submits
 function search(e) {
@@ -44,10 +84,6 @@ function search(e) {
 		appendMovie(json);
 	})
 	.catch(function(error) { console.log(error); });
-
-	//delete old searches
-	var elem = document.getElementsByClassName('movie-child');
-    elem.parentNode.removeChild(elem);
 } 
 
 function appendMovie(data) {

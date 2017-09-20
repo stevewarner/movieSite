@@ -221,8 +221,6 @@ input[type=search]:focus {
   width: 130px;
   background-color: #fff;
   border-color: transparent;
-  
-
 }
 
 input:-moz-placeholder {
@@ -241,6 +239,10 @@ input::-webkit-input-placeholder {
     color: #7B7B7B;
     cursor:pointer;
     width: 0;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
 /************ Movie Results ******************/
