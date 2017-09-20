@@ -87,6 +87,14 @@ function search(e) {
 } 
 
 function appendMovie(data) {
+
+	console.log(document.getElementById("content").hasChildNodes())
+	
+	//remove old results
+	while (document.getElementById("content").hasChildNodes()) {
+    document.getElementById("content").removeChild(document.getElementById("content").lastChild);
+	}
+
 	data.results.forEach((item, index) => {
 		//creates results div and class
 		let movieResultDiv = document.createElement("div");
