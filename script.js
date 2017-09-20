@@ -14,7 +14,7 @@
 // https://www.themoviedb.org/documentation/api/discover
 
 function fillMoviesOnLoad() {
-
+	const pop = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc"
 }
 
 
@@ -30,7 +30,8 @@ function search(e) {
 	// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 	// store in a variable somewhere
 
-	console.log(api + searchTerm)
+	//console.log(api + searchTerm)
+
 	fetch(api + searchTerm).then(function(response) {
     let contentType = response.headers.get("content-type");
     if(contentType && contentType.includes("application/json")) {
@@ -44,7 +45,9 @@ function search(e) {
 	})
 	.catch(function(error) { console.log(error); });
 
-	return "hello world"
+	//delete old searches
+	var elem = document.getElementsByClassName('movie-child');
+    elem.parentNode.removeChild(elem);
 } 
 
 function appendMovie(data) {
