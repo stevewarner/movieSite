@@ -11,17 +11,18 @@ body {
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   grid-template-rows: 6em 1fr 3em;
   height: 100vh;
 }
 
 .box {
-  grid-column: span 4;
+  grid-column: span 1;
 
   display: flex;
   flex: 1 1 auto;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-around;
 }
 
@@ -36,12 +37,12 @@ p > a:hover {
 
 nav {
   background-color: #333;
-  grid-column: span 4;
+  grid-column: span 1;
   grid-row: 1;
   padding: 20px 0;
 }
 
-nav p {
+nav a.brand {
   color: #fff;
   font-family: 'Oswald', sans-serif;
   font-size: 36px;
@@ -97,7 +98,7 @@ nav li a:hover:before {
 
 footer {
   background-color: #f6f6f6;
-  grid-column: span 4;
+  grid-column: span 1;
 }
 
 .text-center {
@@ -124,9 +125,9 @@ button .active {
 }
 
 /* RESPONSIVE */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 411px) {
   .wrapper {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   grid-template-rows: 8em repeat(1, 1fr);
   
   }
@@ -136,10 +137,10 @@ button .active {
 }
 
   nav {
-  grid-column: span 2;
+  grid-column: span 1;
 }
   footer {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 }
 
@@ -188,48 +189,46 @@ button .active {
 
 /* SEARCH */
 input {
-	outline: none;
+  outline: none;
 }
 input[type=search] {
-	-webkit-appearance: textfield;
-	-webkit-box-sizing: content-box;
-	font-family: inherit;
-	font-size: 100%;
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
 }
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
-	display: none; 
+  display: none; 
 }
 
 
 input[type=search] {
   padding:.3em 2em .3em .7em;
-	/*padding: 9px 20px 9px 10px;*/
-	width: 55px;
-	border: transparent;
-	-webkit-border-radius: 10em;
-	-moz-border-radius: 10em;
-	border-radius: 10em;
-	
-	-webkit-transition: all .5s;
-	-moz-transition: all .5s;
-	transition: all .5s;
+  /*padding: 9px 20px 9px 10px;*/
+  width: 55px;
+  border: transparent;
+  -webkit-border-radius: 10em;
+  -moz-border-radius: 10em;
+  border-radius: 10em;
+  
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
 }
 
 input[type=search]:focus {
-	width: 130px;
-	background-color: #fff;
-	border-color: transparent;
-	
-
+  width: 130px;
+  background-color: #fff;
+  border-color: transparent;
 }
 
 input:-moz-placeholder {
-	color: #999;
+  color: #999;
 }
 
 input::-webkit-input-placeholder {
-	color: #999;
+  color: #999;
 }
 
 #filtersubmit {
@@ -242,6 +241,10 @@ input::-webkit-input-placeholder {
     width: 0;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
 /************ Movie Results ******************/
 /* styles for the movie results stuff goes here, 
 also added flex properties to the  box class -> see .box above */
@@ -251,5 +254,14 @@ also added flex properties to the  box class -> see .box above */
   align-items: baseline;
   flex: 1 1 auto;
   min-width: 300px;
+  padding-top: 40px;
+}
+
+.movie p {
+  max-width: 300px;
+}
+
+.movie-child {
+    text-align: center;
 }
 
