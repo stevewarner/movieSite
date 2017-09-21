@@ -257,11 +257,8 @@ also added flex properties to the  box class -> see .box above */
   padding-top: 40px;
 }
 
-.movie p {
-  max-width: 300px;
-}
-
 .movie-child {
     text-align: center;
+    max-width: 300px;
 }
 

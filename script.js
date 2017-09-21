@@ -33,9 +33,9 @@ function search(e, type) {
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&query=`
 		case 'discover':
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}
-				&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
+				&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10`
 		default:
-			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&query=`
+			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&vote_average.gte=7`
 	}
 
 	// only get the value of the search input field if the user submits the search form
@@ -45,6 +45,7 @@ function search(e, type) {
 	}
 		// Using fetch to get the data
 		// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+		console.log(apiUrl)
 		let searchUrl = searchTerm ? apiUrl + searchTerm : apiUrl;
 		fetch(searchUrl).then(function(response) {
 		    let contentType = response.headers.get("content-type");
@@ -85,8 +86,12 @@ function appendMovie(data) {
 		movieResultDiv.appendChild(movieResultSubDiv);
 
 		//call helper function
-		createElement.title(movieResultSubDiv, item.title);
+		
 		createElement.poster(movieResultSubDiv, item.poster_path);
+		createElement.title(movieResultSubDiv, item.title);
+		createElement.year(movieResultSubDiv, item.release_date);
+		createElement.rating(movieResultSubDiv, item.vote_average);
+		console.log(item.vote_average)
 
 		//append it
 		document.getElementById("content").appendChild(movieResultDiv);	
@@ -110,7 +115,19 @@ let createElement = {
 		movieResultPosterSrc.value = fullPosterPath;
 		movieResultPoster.setAttributeNode(movieResultPosterSrc);
 		parentNode.appendChild(movieResultPoster);
-	}
+	},
+	year: (parentNode, year) => {
+		let releaseYear = document.createElement("p");
+		parentNode.appendChild(releaseYear)
+		let node = document.createTextNode(year.substring(0,4));
+		releaseYear.appendChild(node);
+	},
+	rating: (parentNode, rating) => {
+		let averageRating = document.createElement("p");
+		parentNode.appendChild(averageRating)
+		let node = document.createTextNode("Rating: " + rating);
+		averageRating.appendChild(node);
+	},
 }
 
 
