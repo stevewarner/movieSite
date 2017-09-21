@@ -35,7 +35,7 @@ function search(e, type) {
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}
 				&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10`
 		default:
-			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&vote_average.gte=7`
+			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&query=`
 	}
 
 	// only get the value of the search input field if the user submits the search form
