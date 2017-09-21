@@ -13,41 +13,63 @@
 // Check out this link, it might be a good place to start for this feature
 // https://www.themoviedb.org/documentation/api/discover
 
-function fillMoviesOnLoad() {
-
-}
+(function fillMoviesOnLoad() {
+	search(null, 'discover')
+})();
 
 
 // this is our function to capture form submits
-function search(e) {
-	e.preventDefault();
+// param {object} e    - this is the event object
+// param {string} type - we're using search and discover
+function search(e, type) {
+	if (e) e.preventDefault();
 
-	const api = 'https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query='
+	const key = '3e918b8dd253006cde86759c025d0b23'
 
-	let searchTerm = e.target.children[0].value;
+	// we'll define the variable here and then we can assign it below
+	let apiUrl = ''
+	switch (type) {
+		case 'search':
+			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&query=`
+		case 'discover':
+			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}
+				&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
+		default:
+			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&query=`
+	}
 
-	// Using fetch to get the data
-	// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-	// store in a variable somewhere
+	// only get the value of the search input field if the user submits the search form
+	let searchTerm
+	if (e && type === 'search') {
+		searchTerm = e.target.children[0].value;
+	}
+		// Using fetch to get the data
+		// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+		let searchUrl = searchTerm ? apiUrl + searchTerm : apiUrl;
+		fetch(searchUrl).then(function(response) {
+		    let contentType = response.headers.get("content-type");
+		    if(contentType && contentType.includes("application/json")) {
+		      return response.json();
+		    }
+		    throw new TypeError("Oops, we haven't got JSON!");
+			})
+			.then(function(json) { 
+				console.log('results are', json)	
+				appendMovie(json);
+			})
+			.catch(function(error) { console.log(error); });
+}
 
-	console.log(api + searchTerm)
-	fetch(api + searchTerm).then(function(response) {
-    let contentType = response.headers.get("content-type");
-    if(contentType && contentType.includes("application/json")) {
-      return response.json();
-    }
-    throw new TypeError("Oops, we haven't got JSON!");
-	})
-	.then(function(json) { 
-		console.log('results are', json)	
-		appendMovie(json);
-	})
-	.catch(function(error) { console.log(error); });
-
-	return "hello world"
-} 
+function removeChildren() {
+	var element = document.getElementById("content");
+	while (element.firstChild) {
+	  element.removeChild(element.firstChild);
+	}
+}
 
 function appendMovie(data) {
+	// before we append each set of movie results remove the previous ones
+	removeChildren()
 	data.results.forEach((item, index) => {
 		//creates results div and class
 		let movieResultDiv = document.createElement("div");
@@ -74,13 +96,14 @@ function appendMovie(data) {
 
 let createElement = {
 	title: (parentNode, title) => {
-		let movieResultTitleP = document.createElement("p");
+		let movieResultTitleP = document.createElement("h2");
 		parentNode.appendChild(movieResultTitleP)
 		let node = document.createTextNode(title);
 		movieResultTitleP.appendChild(node);
 	},
 	poster: (parentNode, posterPath) => {
-		let fullPosterPath = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + posterPath;
+		const placeholderImg = 'images/movie-poster-placeholder.png'
+		let fullPosterPath = posterPath ? 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + posterPath : placeholderImg;
 		// let node = document.createTextNode(poster);
 		let movieResultPoster = document.createElement("img");
 		let movieResultPosterSrc = document.createAttribute("src");
