@@ -124,28 +124,6 @@ button .active {
   background-color: #009ACD;
 }
 
-/* RESPONSIVE */
-@media only screen and (max-width: 415px) {
-  .wrapper {
-    grid-template-columns: 1fr;
-    grid-template-rows: 8em 1fr 3em;
-  
-  }
-  
-  a {
-  color: #fff;
-}
-
-  nav {
-    padding: 20px 10px;
-}
-
-input[type=search]:focus {
-    width: 80px;
-}
-  
-}
-
 /* Modal */
 
 .modal {
@@ -262,5 +240,27 @@ also added flex properties to the  box class -> see .box above */
 .movie-child {
     text-align: center;
     max-width: 300px;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 415px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 8em 1fr 3em;
+  
+  }
+  
+  a {
+  color: #fff;
+}
+
+  nav {
+    padding: 20px 10px;
+}
+
+input[type=search]:focus {
+    width: 80px;
+}
+  
 }
 
