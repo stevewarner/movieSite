@@ -265,10 +265,6 @@ also added flex properties to the  box class -> see .box above */
   .box {
   justify-content: space-around;
 }
-  
-  a {
-  color: #fff;
-}
 
   nav {
     padding: 20px 10px;
