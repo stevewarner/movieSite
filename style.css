@@ -23,7 +23,7 @@ body {
   flex: 1 1 auto;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 a {
@@ -245,10 +245,12 @@ also added flex properties to the  box class -> see .box above */
 /* RESPONSIVE */
 @media only screen and (max-width: 415px) {
   .wrapper {
-    grid-template-columns: 1fr;
     grid-template-rows: 8em 1fr 3em;
-  
   }
+
+  .box {
+  justify-content: space-around;
+}
   
   a {
   color: #fff;
