@@ -7,8 +7,9 @@
 
 
 /******* TODO *********/
-// it would be cool to populate some moves when the page loads or have some kind of browser feature, 
-// in addition we could also suppor the search feature we already implemented.
+// Refine frontpage results (Currently shows highest rated with more than 999 votes)
+// Add more information to results like director, popularity, rating, summary?
+// ^Flip animation like this would be cool https://codepen.io/stevewarner/pen/PJzmRQ
 
 // Check out this link, it might be a good place to start for this feature
 // https://www.themoviedb.org/documentation/api/discover

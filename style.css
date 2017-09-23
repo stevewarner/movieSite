@@ -39,7 +39,7 @@ nav {
   background-color: #333;
   grid-column: span 1;
   grid-row: 1;
-  padding: 20px 0;
+  padding: 20px;
 }
 
 nav a.brand {
@@ -125,10 +125,10 @@ button .active {
 }
 
 /* RESPONSIVE */
-@media only screen and (max-width: 411px) {
+@media only screen and (max-width: 415px) {
   .wrapper {
     grid-template-columns: 1fr;
-  grid-template-rows: 8em repeat(1, 1fr);
+    grid-template-rows: 8em 1fr 3em;
   
   }
   
@@ -137,7 +137,7 @@ button .active {
 }
 
   nav {
-  grid-column: span 1;
+    padding: 20px 0;
 }
   footer {
     grid-column: span 1;
