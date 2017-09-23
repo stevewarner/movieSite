@@ -137,11 +137,13 @@ button .active {
 }
 
   nav {
-    padding: 20px;
+    padding: 20px 10px;
 }
-  footer {
-    grid-column: span 1;
-  }
+
+input[type=search]:focus {
+    width: 80px;
+}
+  
 }
 
 /* Modal */
