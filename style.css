@@ -1,6 +1,7 @@
 *, *:before, *:after {
   box-sizing: border-box;
   outline: none;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -18,12 +19,12 @@ body {
 
 .box {
   grid-column: span 1;
-
   display: flex;
   flex: 1 1 auto;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 a {
@@ -46,7 +47,7 @@ nav a.brand {
   font-family: 'Oswald', sans-serif;
   font-size: 36px;
   padding: 0;
-  margin: 0;
+  margin: 0 50px 0 10px;
   text-decoration: none;
 }
 
@@ -256,8 +257,12 @@ also added flex properties to the  box class -> see .box above */
     max-width: 300px;
 }
 
+.movie-child h2, p {
+  margin: 0 0 10px 0;
+}
+
 /* RESPONSIVE */
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 475px) {
   .wrapper {
     grid-template-rows: 8em 1fr 3em;
   }
@@ -268,10 +273,15 @@ also added flex properties to the  box class -> see .box above */
 
   nav {
     padding: 20px 10px;
+
 }
 
 input[type=search]:focus {
     width: 80px;
+}
+
+.modal-content {
+  width: 80%;
 }
   
 }

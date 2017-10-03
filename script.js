@@ -126,7 +126,7 @@ let createElement = {
 	rating: (parentNode, rating) => {
 		let averageRating = document.createElement("p");
 		parentNode.appendChild(averageRating)
-		let node = document.createTextNode("Rating: " + rating);
+		let node = document.createTextNode(rating +'/10');
 		averageRating.appendChild(node);
 	},
 }
