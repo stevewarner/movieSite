@@ -110,8 +110,12 @@ nav li a:hover:before {
 footer {
   background-color: #f6f6f6;
   grid-column: span 1;
-  padding-top: 10px;
-  margin-top: 20px;
+  
+}
+
+footer p {
+  
+  margin: 1em;
 }
 
 .text-center {
@@ -262,6 +266,10 @@ also added flex properties to the  box class -> see .box above */
   flex: 1 1 auto;
   min-width: 300px;
   padding-top: 40px;
+}
+
+.movie:last-child {
+    padding-bottom: 40px;
 }
 
 .movie-child {

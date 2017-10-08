@@ -27,6 +27,8 @@ function search(e, type) {
 
 	const key = '3e918b8dd253006cde86759c025d0b23'
 
+	let randomYear = Math.floor(Math.random() * 36) + 1970
+
 	// we'll define the variable here and then we can assign it below
 	let apiUrl = ''
 	switch (type) {
@@ -34,12 +36,15 @@ function search(e, type) {
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&query=`
 		break;
 		case 'discover':
-			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&query=`
+			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999`
 		break;
 		case 'random':
+			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&primary_release_year=${randomYear}&sort_by=popularity.desc&vote_count.gte=10`
+		break;
+		case 'popular':
 			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}
 				&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10`
-		//break;
+		break;
 		//default:
 			//apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=batman`
 	}
