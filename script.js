@@ -15,15 +15,15 @@
 // https://www.themoviedb.org/documentation/api/discover
 
 (function fillMoviesOnLoad() {
-	getResults(null, 'discover')
+	search(null, 'discover')
 })();
 
 
 // this is our function to capture form submits
 // param {object} e    - this is the event object
 // param {string} type - we're using search and discover
-function getResults(e, type) {
-	if (e) {e.preventDefault();}
+function search(e, type) {
+	if (e) e.preventDefault();
 
 	const key = '3e918b8dd253006cde86759c025d0b23'
 
@@ -32,15 +32,16 @@ function getResults(e, type) {
 	switch (type) {
 		case 'search':
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&query=`
+		break;
 		case 'discover':
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&query=`
 		break;
 		case 'random':
 			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}
 				&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10`
-		break;
-		default:
-			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&query=`
+		//break;
+		//default:
+			//apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=batman`
 	}
 
 	// only get the value of the search input field if the user submits the search form
@@ -138,7 +139,7 @@ let createElement = {
 let randomMovie = document.getElementById("randomMovie");
 
 randomMovie.onclick = function() {
-	getResults(event, 'random')
+	search(event, 'random')
 }
 
 
