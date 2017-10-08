@@ -15,15 +15,15 @@
 // https://www.themoviedb.org/documentation/api/discover
 
 (function fillMoviesOnLoad() {
-	search(null, 'discover')
+	getResults(null, 'discover')
 })();
 
 
 // this is our function to capture form submits
 // param {object} e    - this is the event object
 // param {string} type - we're using search and discover
-function search(e, type) {
-	if (e) e.preventDefault();
+function getResults(e, type) {
+	if (e) {e.preventDefault();}
 
 	const key = '3e918b8dd253006cde86759c025d0b23'
 
@@ -33,8 +33,12 @@ function search(e, type) {
 		case 'search':
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&query=`
 		case 'discover':
-			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}
+			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&query=`
+		break;
+		case 'random':
+			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}
 				&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10`
+		break;
 		default:
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999&query=`
 	}
@@ -129,6 +133,12 @@ let createElement = {
 		let node = document.createTextNode(rating +'/10');
 		averageRating.appendChild(node);
 	},
+}
+
+let randomMovie = document.getElementById("randomMovie");
+
+randomMovie.onclick = function() {
+	getResults(event, 'random')
 }
 
 
