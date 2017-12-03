@@ -4,7 +4,7 @@
 // https://developers.themoviedb.org/3/getting-started/search-and-query-for-details
 // Example
 // https://api.themoviedb.org/3/search/movie?api_key=3e918b8dd253006cde86759c025d0b23&query=Jack+Reacher
-
+//
 
 /******* TODO *********/
 // Refine frontpage results (Currently shows highest rated with more than 999 votes)
@@ -27,9 +27,14 @@ function search(e, type) {
 
 	const key = '3e918b8dd253006cde86759c025d0b23'
 
-	let randomYear = Math.floor(Math.random() * 36) + 1970
+	const randomYear = Math.floor(Math.random() * 36) + 1970
 
-	// we'll define the variable here and then we can assign it below
+	const favDirectors = [1, 11090, 138, 7467, 240, 1032, 488, 578, 510, 14639, 2710, 190, 1123, 1224]
+	let randNum = Math.floor(Math.random() * (favDirectors.length -1)) + 0
+
+	let favDirector = favDirectors[randNum]
+
+	// search, discover, randomYear, newMovies, randomDirector, popular
 	let apiUrl = ''
 	switch (type) {
 		case 'search':
@@ -38,8 +43,14 @@ function search(e, type) {
 		case 'discover':
 			apiUrl = `https://api.themoviedb.org/3/${type}/movie?api_key=${key}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=999`
 		break;
-		case 'random':
+		case 'randoma':
 			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&primary_release_year=${randomYear}&sort_by=popularity.desc&vote_count.gte=10`
+		break;
+		case 'newMovies':
+			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&primary_release_year=2017&sort_by=popularity.desc&vote_count.gte=10`
+		break;
+		case 'random':
+			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&with_people=${favDirector}&sort_by=popularity.desc&vote_count.gte=99`
 		break;
 		case 'popular':
 			apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${key}
